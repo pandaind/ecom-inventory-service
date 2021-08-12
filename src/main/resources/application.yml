@@ -1,0 +1,91 @@
+spring:
+  profiles:
+    active: dev
+  boot:
+    admin:
+      client:
+        url: http://localhost:9090
+
+server:
+  port: 0
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+    appname: inventory-service
+---
+spring:
+  config:
+    activate:
+      on-profile:
+        - dev
+  application:
+    name: inventory-service
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+  h2:
+    console:
+      enabled: true
+      path: /data
+      settings:
+        web-allow-others: true
+
+  datasource:
+    url: jdbc:h2:mem:inventorydb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        generate_statistics: false
+        format_sql: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile:
+        - test
+  application:
+    name: inventory-service
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        generate_statistics: true
+        format_sql: true
+        connection:
+          isolation: 2
+        cache:
+          use_second_level_cache: true
+          region:
+            factory_class: org.hibernate.cache.ehcache.internal.EhcacheRegionFactory
+      javax:
+        persistent:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+        type: trace
+    net:
+      sf:
+        ehcache: debug
