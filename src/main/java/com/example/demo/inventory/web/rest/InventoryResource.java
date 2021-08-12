@@ -23,11 +23,9 @@ import java.util.Optional;
 public class InventoryResource {
 
     private static final String ENTITY_NAME = "Inventory";
-
+    private final InventoryService service;
     @Value("${spring.application.name}")
     private String applicationName;
-
-    private final InventoryService service;
 
     @Autowired
     public InventoryResource(InventoryService service) {
@@ -92,7 +90,7 @@ public class InventoryResource {
     }
 
     @DeleteMapping("/inventories/{skuCode}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable String skuCode) {
+    public ResponseEntity<Void> deleteInventory(@PathVariable(value = "skuCode") String skuCode) {
         log.debug("REST request to delete Product : {}", skuCode);
         this.service.delete(skuCode);
         return ResponseEntity
