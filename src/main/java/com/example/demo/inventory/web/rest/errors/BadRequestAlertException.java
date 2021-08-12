@@ -1,4 +1,4 @@
-package com.example.demo.inventory.rest.errors;
+package com.example.demo.inventory.web.rest.errors;
 
 import lombok.Getter;
 import lombok.Setter;

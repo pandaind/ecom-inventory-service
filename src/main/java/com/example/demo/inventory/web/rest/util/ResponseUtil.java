@@ -1,4 +1,4 @@
-package com.example.demo.inventory.rest.util;
+package com.example.demo.inventory.web.rest.util;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

@@ -1,10 +1,10 @@
-package com.example.demo.inventory.rest;
+package com.example.demo.inventory.web.rest;
 
-import com.example.demo.inventory.rest.errors.BadRequestAlertException;
-import com.example.demo.inventory.rest.util.HeaderUtil;
-import com.example.demo.inventory.rest.util.ResponseUtil;
 import com.example.demo.inventory.service.InventoryService;
 import com.example.demo.inventory.service.dto.InventoryDTO;
+import com.example.demo.inventory.web.rest.errors.BadRequestAlertException;
+import com.example.demo.inventory.web.rest.util.HeaderUtil;
+import com.example.demo.inventory.web.rest.util.ResponseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

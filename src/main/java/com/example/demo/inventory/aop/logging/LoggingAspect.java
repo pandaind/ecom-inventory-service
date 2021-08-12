@@ -40,7 +40,7 @@ public class LoggingAspect {
     @Pointcut(
             "within(com.example.demo.inventory.repository..*)"
                     + " || within(com.example.demo.inventory.service..*)"
-                    + " || within(com.example.demo.inventoryō.web.rest..*)")
+                    + " || within(com.example.demo.inventory.web.rest..*)")
     public void applicationPackagePointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }
