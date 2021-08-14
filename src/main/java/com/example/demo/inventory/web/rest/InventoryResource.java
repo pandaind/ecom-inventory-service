@@ -97,6 +97,23 @@ public class InventoryResource {
                 false, ENTITY_NAME, skuCode));
     }
 
+    @PutMapping(value = "/inventories/{skuCode}", params = {"quantity"})
+    public ResponseEntity<InventoryDTO> updateQuantity(
+            @PathVariable(value = "skuCode") final String skuCode,
+            @RequestParam(value = "quantity") final Long quantity) {
+        log.debug("REST request to partial update Inventory partially : {}, {}", skuCode, quantity);
+
+        Optional<InventoryDTO> result = this.service.findBySkuCode(skuCode);
+        if (result.isPresent()) {
+            InventoryDTO dto = result.get();
+            dto.setQuantity(Math.abs(dto.getQuantity() - quantity));
+            result = Optional.ofNullable(this.service.update(dto));
+        }
+
+        return ResponseUtil.wrapNotFound(result, HeaderUtil.createEntityCreationAlert(applicationName,
+                false, ENTITY_NAME, skuCode));
+    }
+
     @DeleteMapping("/inventories/{skuCode}")
     public ResponseEntity<Void> deleteInventory(@PathVariable(value = "skuCode") String skuCode) {
         log.debug("REST request to delete Product : {}", skuCode);
