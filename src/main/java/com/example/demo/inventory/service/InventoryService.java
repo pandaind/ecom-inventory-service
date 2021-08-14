@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface InventoryService {
     List<InventoryDTO> findAll();
 
-    Optional<InventoryDTO> findBySkuCode(String category);
+    Optional<InventoryDTO> findBySkuCode(String skuCode);
 
     Optional<InventoryDTO> findById(Long id);
 

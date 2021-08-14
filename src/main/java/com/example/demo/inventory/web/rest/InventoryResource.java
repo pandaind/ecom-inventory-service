@@ -40,8 +40,16 @@ public class InventoryResource {
     @GetMapping("/inventories")
     public ResponseEntity<List<InventoryDTO>> getInventories() {
         log.debug("REST request to get all inventories");
-        var inventories = this.service.findAll();
-        return ResponseEntity.ok().body(inventories);
+        var result = this.service.findAll();
+        return ResponseEntity.ok().body(result);
+    }
+
+
+    @GetMapping("/inventories/{skuCode}")
+    public ResponseEntity<InventoryDTO> getInventory(@PathVariable("skuCode") String skuCode) {
+        log.debug("REST request to get one inventory {}", skuCode);
+        var result = this.service.findBySkuCode(skuCode);
+        return ResponseUtil.wrapNotFound(result);
     }
 
     @PostMapping("/inventories")
