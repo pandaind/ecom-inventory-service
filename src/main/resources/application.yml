@@ -81,6 +81,10 @@ spring:
         persistent:
           sharedCache:
             mode: ENABLE_SELECTIVE
+  boot:
+    admin:
+      client:
+        enabled: false
 logging:
   level:
     org:
