@@ -5,7 +5,7 @@ spring:
     name: inventory-service
   cloud:
     config:
-      uri: http://localhost:8888
+      uri: ${CONFIG_SERVER:http://localhost:8888}
     bus:
       enabled: true
       refresh:
