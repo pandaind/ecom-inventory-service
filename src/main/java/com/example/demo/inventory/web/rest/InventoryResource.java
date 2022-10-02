@@ -56,7 +56,7 @@ public class InventoryResource {
     public ResponseEntity<InventoryDTO> addInventory(@RequestBody InventoryDTO inventoryDTO) throws URISyntaxException {
         log.debug("REST request to save Inventory {}", inventoryDTO);
         if (inventoryDTO.getId() != null) {
-            throw new BadRequestAlertException("A new product cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new inventory cannot already have an ID", ENTITY_NAME, "idexists");
         }
 
         InventoryDTO result = this.service.add(inventoryDTO);

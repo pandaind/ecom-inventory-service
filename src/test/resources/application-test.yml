@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: inventory-service
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+      - org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        generate_statistics: true
+        format_sql: true
+        connection:
+          isolation: 2
+        cache:
+          use_second_level_cache: true
+          region:
+            factory_class: org.hibernate.cache.ehcache.internal.EhcacheRegionFactory
+      javax:
+        persistent:
+          sharedCache:
+            mode: ENABLE_SELECTIVE
+  boot:
+    admin:
+      client:
+        enabled: false
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+        type: trace
+    net:
+      sf:
+        ehcache: debug
+eureka:
+  client:
+    enabled: false
