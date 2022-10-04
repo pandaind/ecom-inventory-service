@@ -3,6 +3,7 @@ spring:
     active: dev
   application:
     name: inventory-service
+
   cloud:
     config:
       uri: ${CONFIG_SERVER:http://localhost:8888}
@@ -18,7 +19,7 @@ spring:
           auto-add-partitions: true
 
 server:
-  port: 0
+  port: 8080
 
 management:
   endpoints:
