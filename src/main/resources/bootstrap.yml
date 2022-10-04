@@ -19,7 +19,7 @@ spring:
           auto-add-partitions: true
 
 server:
-  port: 8080
+  port: 0
 
 management:
   endpoints:
